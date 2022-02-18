@@ -13,10 +13,17 @@ function oninit() {
     downloadBtnEl = document.querySelector(".download");
     downloadBtnEl.addEventListener('click', downloadImage);
     gCtx = gCanvasEl.getContext("2d");
+    drowTextonCanvas();
     gCanvasEl.ondragenter = (ev) => ev.preventDefault();
     gCanvasEl.ondragleave = (ev) => ev.preventDefault();
     gCanvasEl.ondragover = (ev) => ev.preventDefault();
     gCanvasEl.ondrop = onDrop;
+}
+
+
+function drowTextonCanvas() {
+    gCtx.font = "40px Arial";
+    gCtx.fillText("Drop your images here!", 50, 50);
 }
 
 function onDrop(ev) {
