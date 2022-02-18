@@ -22,8 +22,10 @@ function oninit() {
 
 
 function drowTextonCanvas() {
-    gCtx.font = "40px Arial";
-    gCtx.fillText("Drop your images here!", 50, 50);
+    gCtx.font = "50px Comic Sans MS";
+    gCtx.fillStyle = "red";
+    gCtx.textAlign = "center";
+    gCtx.fillText("Drop your images here!", gCanvasEl.width / 2, gCanvasEl.height / 2);
 }
 
 function onDrop(ev) {
