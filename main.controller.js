@@ -3,7 +3,7 @@
 
 let gCanvasEl = null;
 let gCtx = null;
-const gImages = [];
+let gBackgroundImage = null;
 let downloadBtnEl = null;
 window.addEventListener('load', oninit);
 
@@ -40,10 +40,7 @@ async function drawImageOnCanvas(file) {
         const img = new Image();
         img.src = await toBase64(file);
         img.onload = () => {
-            img.height = img.height / 2;
-            img.width = img.width / 2;
-            gImages.push(img);
-            loadImagesToCtx();
+            loadImagesToCtx(img);
         }
 
     } catch (err) {
@@ -64,11 +61,15 @@ function resizeCanvas(height, width) {
     gCanvasEl.style.height = `${height}px`;
     gCanvasEl.style.width = `${width}px`;
 }
-function loadImagesToCtx() {
-    gImages.forEach(img => {
+function loadImagesToCtx(img) {
+    if (!gBackgroundImage) {
         resizeCanvas(img.height, img.width)
-        gCtx.drawImage(img, 0, 0, gCanvasEl.width, gCanvasEl.height)
-    })
+        gCtx.drawImage(img, 0, 0, gCanvasEl.width, gCanvasEl.height);
+        gBackgroundImage = img;
+        return;
+    }
+    gCtx.globalAlpha = 1;
+    gCtx.drawImage(img, 0, 0, gCanvasEl.width, gCanvasEl.height);
 }
 
 
