@@ -58,8 +58,8 @@ function toBase64(file) {
 };
 
 function resizeCanvas(height, width) {
-    gCanvasEl.style.height = `${height}px`;
-    gCanvasEl.style.width = `${width}px`;
+    gCanvasEl.style.height = `${height / 2}px`;
+    gCanvasEl.style.width = `${width / 2}px`;
 }
 function loadImagesToCtx(img) {
     if (!gBackgroundImage) {
